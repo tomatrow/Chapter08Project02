@@ -1,3 +1,2 @@
 class Action extends Movie {
-	
 }

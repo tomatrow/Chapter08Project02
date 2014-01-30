@@ -1,3 +1,2 @@
 class Drama extends Movie {
-	
 }
