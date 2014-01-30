@@ -1,0 +1,3 @@
+class Comedy extends Movie {
+	
+}
