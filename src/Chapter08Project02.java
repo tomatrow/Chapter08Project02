@@ -1,4 +1,23 @@
-import java.math.BigDecimal;
+/* Chapter No. 08 - Project No. 02
+    File Name:          Chapter08Project02.java
+    Programmer:         Andrew Caldwell
+    Date Last Modified: Jan. 30, 2014
+    
+    Problem Statement:
+		Use polymorphism in a movie model
+    
+    Overall Plan
+		intialize movieArray with three Movie subclasses
+		print out movieArray
+
+    Classes needed and Purpose
+    main class - Chapter08Project02
+    Movie - movie model
+	Action - movie model subclass
+	Drama - movie model subclass
+	Comedy - movie model subclass
+	AJTTMoney - money container
+*/
 
 class Chapter08Project02 {
 	public static void main(String[] args) {
