@@ -24,8 +24,26 @@ public class AJTTMoney {
 	public BigDecimal amount() {
 		return _amount;
 	}
+
+	// Object
 	@Override
 	public String toString() {
 		return String.format("$" + amount());
+	}
+	@Override
+	public boolean equals(Object o) {
+		if (o == null)
+			return false;
+		else if (o.getClass() != this.getClass())
+			return false;
+		else {
+			AJTTMoney otherMoney = (AJTTMoney)o;
+			boolean amountIsEqual = otherMoney.amount().equals(this.amount());
+			return amountIsEqual;
+		}
+	}
+	@Override
+	public int hashCode() {
+		return this.amount().hashCode();
 	}
 }

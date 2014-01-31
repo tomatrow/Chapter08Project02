@@ -1,18 +1,28 @@
-abstract class Movie {
+import java.math.BigDecimal;
+
+class Movie {
 	public static enum Rating {
 		G,PG,PG_13,R;
 	}
+	public static BigDecimal LATE_FEE_MULTIPLIER = new BigDecimal(2.00);
+
 	private Rating _rating;
 	private int _idNumber;
 	private String _title;
 
 	Movie() {
-		this(null,0xC0FFEE,null);
+		this(null,null,0);
 	}
-	Movie(Rating rating, int idNumber, String title) {	
+	Movie(String title, Rating rating, int idNumber) {	
 		setRating(rating);
 		setIdNumber(idNumber);
 		setTitle(title);
+	}
+
+	AJTTMoney calcLateFees(int daysLate) {
+		if (daysLate < 0)
+			throw new IllegalArgumentException("Days must be positive");
+		return new AJTTMoney(LATE_FEE_MULTIPLIER.multiply(new BigDecimal(daysLate)));
 	}
 
 	// getters
@@ -28,9 +38,8 @@ abstract class Movie {
 
 	// setters
 	public void setIdNumber(int idNumber) {
-		if (idNumber < 0) {
+		if (idNumber < 0) 
 			throw new IllegalArgumentException("ID must be positive");
-		}
 		_idNumber = idNumber;
 	}
 	public void setRating(Rating rating) {
@@ -39,9 +48,6 @@ abstract class Movie {
 	public void setTitle(String title) {
 		_title = title;
 	}
-
-	// fees are in cents
-	abstract int calcLateFees();
 
 	// Object
 	@Override
@@ -56,10 +62,13 @@ abstract class Movie {
 			return idNumberIsEqual;
 		}
 	}
+
 	@Override
 	public int hashCode() {
 		return this.rating().ordinal() ^ this.idNumber() ^ this.title().hashCode();
 	}
-
-
+	@Override
+	public String toString() {
+		return this.getClass().getName() + ":" + this.title() + "," + this.rating() + "," + this.idNumber();
+	}
 }
